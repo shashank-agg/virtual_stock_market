@@ -1,0 +1,158 @@
+{% block content %}
+  <section>
+    <h2>Welcome, {{user.username }}</h2>
+    <p>This is the main page of the web portal.</p>
+        <a href="/logout"> LOG OUT </a>
+  </section>
+    
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">  
+ 
+    <title>Portal Page</title> 
+    <style type="text/css">    
+/*General styles*/
+body
+{
+	margin: 0;
+	padding: 0;
+}
+
+#main
+{
+	width: 90%;
+	margin: 160px auto 0 auto;
+	background: white;
+}
+
+/*Features table------------------------------------------------------------*/
+.features-table
+{
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-shadow: 0 1px 0 #fff;
+  color: #2a2a2a;
+  background: #000000;  
+  background-image: -moz-linear-gradient(top, #fff, #eaeaea, #fff); /* Firefox 3.6 */
+  background-image: -webkit-gradient(linear,center bottom,center top,from(#fff),color-stop(0.5, #eaeaea),to(#fff)); 
+}
+
+.features-table td
+{
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+  border-bottom: 1px solid #cdcdcd;
+  box-shadow: 0 1px 0 white;
+  -moz-box-shadow: 0 1px 0 white;
+  -webkit-box-shadow: 0 1px 0 white;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/*Body*/
+.features-table tbody td
+{
+  text-align: center;
+  font: normal 12px Verdana, Arial, Helvetica;
+  width: 200px;
+}
+
+.features-table tbody td:first-child
+{
+  width: 200px;
+  text-align: left;
+}
+
+.features-table td:not(:first-child)
+{
+  background: #efefef;
+  background: rgba(144,144,144,0.15);
+  border-right: 1px solid white;
+}
+
+
+/*.features-table td:nth-child(4)
+{
+  background: #e7f3d4;  
+  background: rgba(184,243,85,0.3);
+}*/
+
+/*Header*/
+.features-table thead td
+{
+  font: bold 1.3em 'trebuchet MS', 'Lucida Sans', Arial;  
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-topleft: 10px; 
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top: 1px solid #eaeaea; 
+}
+
+.features-table thead td:first-child
+{
+  border-top: none;
+}
+
+/*Footer*/
+.features-table tfoot td
+{
+  font: bold 1.4em Georgia;  
+  -moz-border-radius-bottomright: 10px;
+  -moz-border-radius-bottomleft: 10px; 
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom: 1px solid #dadada;
+}
+
+.features-table tfoot td:first-child
+{
+  border-bottom: none;
+}
+
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: #EEE}
+    </style> 
+
+
+    <div id="main">
+		 <a href="/portal"> Back to portal</a>
+     <a href="/portal/account"> Account page</a>
+		<table class="features-table">
+			
+									
+				<tbody>
+					 {% for key,value in company_details.items %}    
+					<tr>
+						<td>{{key}}</td>
+						<td>{{value}}</td>
+					</tr>
+					
+					{% endfor %}
+				</tbody>
+		</table>
+
+     <form id="StockForm" method="post" action="."
+                enctype="multipart/form-data">            {% csrf_token %}
+
+            <!-- Display each form. The as_p method wraps each element in a paragraph
+                 (<p>) element. This ensures each element appears on a new line,
+                 making everything look neater. -->
+            {{ stock_form.as_p}}
+
+            <!-- Provide a button to click to submit the form. -->
+            <input type="submit" name="submit" value="GO" />
+        </form>
+	</div>
+ </body>
+</html>
+
+
+
+{% endblock %}
